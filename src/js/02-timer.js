@@ -8,9 +8,12 @@ const start = document.querySelector('[data-start]');
 const days = document.querySelector('[data-days]');
 const hours = document.querySelector('[data-hours]');
 const minutes = document.querySelector('[data-minutes]');
-const second = document.querySelector('[data-seconds]');
+const seconds = document.querySelector('[data-seconds]');
 let selectDate;
-
+let day;
+let hour;
+let minute;
+let seconde;
 
 
 start.disabled = true;
@@ -26,7 +29,6 @@ const options = {
     onClose(selectedDates) {
       const date = new Date();
         selectDate = selectedDates[0];
-        console.log(selectDate);
       if (date.getTime() < selectDate.getTime()) {
         start.disabled = false;
       }
@@ -38,26 +40,23 @@ const options = {
 
   flatpickr(select, options);
 
-start.addEventListener('click',  reverse())
+start.addEventListener('click',  reverse)
 
 function reverse() {
   timerId = setInterval(() => {
-     setTime(selectDate);
-      selectDate = selectDate - 1;
-      console.log(selectDate);
+    selectDate -= 1000;
+    setTime();
+ return selectDate
     
 }, 1000);
 }
 
 function setTime() {
-    selectDate = selectDate - 1;
-    console.log(convertMs(selectDate).seconds);
-      days.textContent = `0${convertMs(selectDate-1).days}`;
-      hours.textContent = `${convertMs(selectDate-1).hours}`;
-      minutes.textContent = `${convertMs(selectDate-1).minutes}`;
-      second.textContent = `${
-        convertMs((selectDate = selectDate - 1)).seconds
-      }`;
+  days.textContent = convertMs(selectDate).days;
+  hours.textContent = convertMs(selectDate).hours;
+  minutes.textContent = convertMs(selectDate).minutes;
+  seconds.textContent = convertMs((selectDate)).seconds;
+  
 }
 
   function convertMs(ms) {
@@ -81,7 +80,7 @@ function setTime() {
   
 
   function addLeadingZero(value) {
-
+padStart();
   }
 
 

@@ -26,3 +26,20 @@
   background-size: cover;
   background-position: center;
 }
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    margin: 10px;
+}
+
+.timer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.value {
+    font-size: 30px;
+    margin: 0 auto;
+}

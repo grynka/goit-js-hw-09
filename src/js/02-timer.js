@@ -15,11 +15,7 @@ let hour;
 let minute;
 let seconde;
 
-
 start.disabled = true;
-
-//console.log(Date.now.toString);
-
 
 const options = {
     enableTime: true,
@@ -32,9 +28,7 @@ const options = {
       if (date.getTime() < selectDate.getTime()) {
         start.disabled = false;
       }
-
         else Notiflix.Notify.failure('"Please choose a date in the future"');
-        return selectDate = selectDate - date;
     },
   };
 
@@ -44,20 +38,24 @@ start.addEventListener('click',  reverse)
 
 function reverse() {
   timerId = setInterval(() => {
-    selectDate -= 1000;
     setTime();
- return selectDate
-    
-}, 1000);
+    console.log(selectDate)
+   }, 1000);
 }
 
 function setTime() {
-  days.textContent = convertMs(selectDate).days;
-  hours.textContent = convertMs(selectDate).hours;
-  minutes.textContent = convertMs(selectDate).minutes;
-  seconds.textContent = convertMs((selectDate)).seconds;
-  
-}
+  const dateN = new Date();
+  const selectDateN = selectDate - dateN; 
+  if (selectDateN > 0) {
+    days.textContent = addLeadingZero(convertMs(selectDateN).days);
+    hours.textContent = addLeadingZero(convertMs(selectDateN).hours);
+    minutes.textContent = addLeadingZero(convertMs(selectDateN).minutes);
+    seconds.textContent = addLeadingZero(convertMs((selectDateN)).seconds);
+    console.log(addLeadingZero(convertMs(selectDateN).seconds));
+  }
+  else clearInterval(timerId);
+    
+  }
 
   function convertMs(ms) {
     // Number of milliseconds per unit of time
@@ -79,8 +77,9 @@ function setTime() {
   }
   
 
-  function addLeadingZero(value) {
-padStart();
+function addLeadingZero(value) {
+  if (value < 10) {
+ return String(value).padStart(2, 0);
   }
-
-
+ else return value
+  }

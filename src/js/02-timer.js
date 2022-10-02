@@ -34,12 +34,11 @@ start.addEventListener('click',  reverse)
 function reverse() {
   start.disabled = true;
   // selectDate = ;
-  timerId = setInterval(() => {
+ const timerId = setInterval(() => {
   if (selectDate - Date.now() > 0) {
-      console.log(selectDate);
   setTime(selectDate - Date.now());
     }
-    
+
   return
     }, 1000); 
 };

@@ -19,9 +19,8 @@ const options = {
     defaultDate: new Date(),
     minuteIncrement: 1,
     onClose(selectedDates) {
-      const date = new Date();
         selectDate = selectedDates[0];
-      if (date.getTime() < selectDate.getTime()) {
+      if (Date.now() < selectDate.getTime()) {
         start.disabled = false;
       }
         else Notiflix.Notify.failure('"Please choose a date in the future"');
@@ -33,23 +32,24 @@ flatpickr(select, options);
 start.addEventListener('click',  reverse)
 
 function reverse() {
+  start.disabled = true;
+  // selectDate = ;
   timerId = setInterval(() => {
-    setTime();
-    console.log(selectDate);
-  }, 1000);
-}
+  if (selectDate - Date.now() > 0) {
+      console.log(selectDate);
+  setTime(selectDate - Date.now());
+    }
+    
+  return
+    }, 1000); 
+};
+  
 
-function setTime() {
-  const dateN = new Date();
-  const selectDateN = selectDate - dateN;
-  console.log(selectDateN);
-  if (selectDateN > 0) {
-    days.textContent = addLeadingZero(convertMs(selectDateN).days);
-    hours.textContent = addLeadingZero(convertMs(selectDateN).hours);
-    minutes.textContent = addLeadingZero(convertMs(selectDateN).minutes);
-    seconds.textContent = addLeadingZero(convertMs(selectDateN).seconds);
-    console.log(addLeadingZero(convertMs(selectDateN).seconds));
-  } else clearInterval(timerId);
+function setTime(date) {
+    days.textContent = addLeadingZero(convertMs(date).days);
+    hours.textContent = addLeadingZero(convertMs(date).hours);
+    minutes.textContent = addLeadingZero(convertMs(date).minutes);
+    seconds.textContent = addLeadingZero(convertMs(date).seconds);
 }
 
   function convertMs(ms) {
@@ -73,8 +73,5 @@ function setTime() {
   
 
 function addLeadingZero(value) {
-  if (value < 10) {
  return String(value).padStart(2, 0);
-  }
- else return value
   }

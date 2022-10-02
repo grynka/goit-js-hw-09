@@ -8,7 +8,7 @@ let i;
 send.addEventListener('submit', function (event) {
   event.preventDefault()
   i = amount.value
-  timerId = setInterval(() => {
+ const timerId = setInterval(() => {
     if (i > 0) {
       i -= 1
       console.log(i + 1);

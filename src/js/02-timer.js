@@ -28,30 +28,29 @@ const options = {
     },
   };
 
-  flatpickr(select, options);
+flatpickr(select, options);
 
 start.addEventListener('click',  reverse)
 
 function reverse() {
   timerId = setInterval(() => {
     setTime();
-    console.log(selectDate)
-   }, 1000);
+    console.log(selectDate);
+  }, 1000);
 }
 
 function setTime() {
   const dateN = new Date();
-  const selectDateN = selectDate - dateN; 
+  const selectDateN = selectDate - dateN;
+  console.log(selectDateN);
   if (selectDateN > 0) {
     days.textContent = addLeadingZero(convertMs(selectDateN).days);
     hours.textContent = addLeadingZero(convertMs(selectDateN).hours);
     minutes.textContent = addLeadingZero(convertMs(selectDateN).minutes);
-    seconds.textContent = addLeadingZero(convertMs((selectDateN)).seconds);
+    seconds.textContent = addLeadingZero(convertMs(selectDateN).seconds);
     console.log(addLeadingZero(convertMs(selectDateN).seconds));
-  }
-  else clearInterval(timerId);
-    
-  }
+  } else clearInterval(timerId);
+}
 
   function convertMs(ms) {
     // Number of milliseconds per unit of time

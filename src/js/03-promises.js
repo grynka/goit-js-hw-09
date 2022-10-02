@@ -5,7 +5,6 @@ const amount = document.querySelector('[name="amount"]');
 const send = document.querySelector('.form');
 let i;
 
-
 send.addEventListener('submit', function (event) {
   event.preventDefault()
   i = amount.value
@@ -18,7 +17,6 @@ send.addEventListener('submit', function (event) {
     return
     }, step.value);
 });
-
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {

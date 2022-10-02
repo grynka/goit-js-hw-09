@@ -11,8 +11,8 @@ send.addEventListener('submit', function (event) {
   timerId = setInterval(() => {
     if (i > 0) {
       i -= 1
-      console.log(i+1);
-      createPromise(i+1, first.value);
+      console.log(i + 1);
+      createPromise(i + 1, first.value);
     }
     return
     }, step.value);
@@ -28,6 +28,5 @@ function createPromise(position, delay) {
         reject(Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`));
       }
     }, delay);
-    
-});
+  });
 }

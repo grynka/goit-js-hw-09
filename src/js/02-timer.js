@@ -10,10 +10,6 @@ const hours = document.querySelector('[data-hours]');
 const minutes = document.querySelector('[data-minutes]');
 const seconds = document.querySelector('[data-seconds]');
 let selectDate;
-let day;
-let hour;
-let minute;
-let seconde;
 
 start.disabled = true;
 

@@ -9,7 +9,7 @@ console.log(body)
 start.addEventListener('click', startF);
 
 function startF() {
-    timerId = setInterval(() => {
+   const timerId = setInterval(() => {
         body.style.backgroundColor = getRandomHexColor();
       }, 1000);
       start.disabled = true;

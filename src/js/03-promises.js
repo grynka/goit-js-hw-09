@@ -3,19 +3,15 @@ const first = document.querySelector('[name="delay"]');
 const step = document.querySelector('[name="step"]');
 const amount = document.querySelector('[name="amount"]');
 const send = document.querySelector('.form');
-let i;
+
 
 send.addEventListener('submit', function (event) {
   event.preventDefault()
-  i = amount.value
- const timerId = setInterval(() => {
-    if (i > 0) {
-      i -= 1
-      console.log(i + 1);
-      createPromise(i + 1, first.value);
+ for (let i = 0; i < amount.value; i++) {
+      let delays = Number.parseInt(first.value) + i * Number.parseInt(step.value)
+      createPromise(i + 1, delays);
     }
-    return
-    }, step.value);
+
 });
 
 function createPromise(position, delay) {
@@ -28,5 +24,6 @@ function createPromise(position, delay) {
         reject(Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`));
       }
     }, delay);
+    
   });
 }
